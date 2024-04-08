@@ -1,0 +1,19 @@
+// -*- C++ -*-
+// Use gridfileWrite function object
+
+h1iso
+{
+    type    isoLine;
+    libs    (faAvalanche);
+
+    field   h;
+    fileName "h";
+
+    values   (0.5 2 4 6 8 10 12 14 16);
+
+    //offset is interpreted such that the same signs as in gridToSTLDict can be used
+    #include "<constant>/offset"
+}
+
+
+// ************************************************************************* //

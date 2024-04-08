@@ -1,0 +1,66 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+watersink off;
+
+correctMomentum on;
+
+relaxBoundaries on;
+
+bindHeight on;
+
+hmin    hmin    [ 0 1 0 0 0 0 0] 1e-5;  //binding the hight
+
+cmin    cmin    [ 0 0 0 0 0 0 0] 1e-10;  //binding the concentration
+
+h0      h0      [ 0 1 0 0 0 0 0] 1e-6;  //hight threshold for artificial viscosity 1e-4 to 1e-9
+
+u0      u0      [0 1 -1 0 0 0 0] 1e-6;  //tolerance for velocity (e.g. smoothing jumps)
+
+nu      nu      [0 2 -1 0 0 0 0] 1e-6;
+
+hwem    hwem    [ 0 1 0 0 0 0 0] 1000;
+
+hentmin hentmin [ 0 1 0 0 0 0 0] 0.1;
+
+R       R       [ 0 0 0 0 0 0 0] 1.65;
+
+Ds      Ds      [ 0 1 0 0 0 0 0] 0.00005;
+
+suspensionFrictionModel laminarSuspension;
+
+suspensionEntrainmentModel ParkerFukushimaEntrainment;
+
+suspensionDepositionModel ParkerFukushimaDeposition;
+
+ambientEntrainmentModel ParkerFukushimaEntrainment;
+
+laminarSuspensionCoeffs
+{
+    cd      cd      [0 0 0 0 0 0 0] 0.004;
+}
+
+Zc      Zc      [ 0 0 0 0 0 0 0] 0.5;
+
+Zm      Zm      [ 0 0 0 0 0 0 0] 13.2;
+
+ewf     ewf     [ 0 0 0 0 0 0 0] 0.00153;
+
+Ri0     Ri0     [ 0 0 0 0 0 0 0] 0.0204;
+
+
+// ************************************************************************* //

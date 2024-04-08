@@ -1,0 +1,72 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  avalanche                             |
+|   \\  /    A nd           | https://develop.openfoam.com/Community/avalanche|
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      faSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    ddt(hentrain) backward;
+    ddt(h1,Us1) backward;
+    ddt(h1) backward;
+    ddt(hentrain2) backward;
+    ddt(h2,Us2) backward;
+    ddt(h2,c2) backward;
+    ddt(h2) backward;
+    ddt(h2,k) backward;
+    ddt(c2,Us2) backward;
+    ddt(c2) backward;
+}
+
+gradSchemes
+{
+    default Gauss linear;
+}
+
+divSchemes
+{
+    default             none;
+    div(phis1,h1)       Gauss upwind;
+    div(phi2s1,Us1)     Gauss upwind;
+    div(phis2,h2)       Gauss upwind;
+    div(phi2s2,Us2)     Gauss upwind;
+    div(phi2s2,c2)      Gauss upwind;
+    div(phi2s2,k)       Gauss upwind;
+    div(phis2,Us2)      Gauss upwind;
+    div((interpolate(c2)*phi2s2),Us2) Gauss upwind;
+}
+
+laplacianSchemes
+{
+    default none;
+    laplacian(h1) Gauss linear corrected;
+    laplacian(h2) Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default linear;
+}
+
+snGradSchemes
+{
+    default corrected;
+}
+
+fluxRequired
+{
+    h1;
+    h2;
+}
+
+// ************************************************************************* //

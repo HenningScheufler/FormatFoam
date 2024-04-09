@@ -33,6 +33,18 @@ and compile OpenFOAM
 ./Allwmake
 ```
 
-After formatting the runtime selectionTable OpenFOAM no longer compiles
+## Caveat
 
-clang-format -i --style=file:clangFormat_Proposed src/OpenFOAM/db/runTimeSelection/construction/runTimeSelectionTables.H
+Some of the macro have line break after the definition of the function resulting in a compilation error after formatting:
+```
+define addToRunTimeSelectionTable\
+(baseType,thisType,argNames)                                                   \
+```
+
+By applying the patch, this issue can be resolved:
+
+```
+define addToRunTimeSelectionTable(baseType,thisType,argNames)                                                   \
+```
+
+The tested formatter are able to compile OpenFOAM

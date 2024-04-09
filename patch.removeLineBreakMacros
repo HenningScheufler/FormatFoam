@@ -1,0 +1,392 @@
+diff --git a/src/OpenFOAM/db/runTimeSelection/construction/addToRunTimeSelectionTable.H b/src/OpenFOAM/db/runTimeSelection/construction/addToRunTimeSelectionTable.H
+index ae7ebf33..8aa33667 100644
+--- a/src/OpenFOAM/db/runTimeSelection/construction/addToRunTimeSelectionTable.H
++++ b/src/OpenFOAM/db/runTimeSelection/construction/addToRunTimeSelectionTable.H
+@@ -39,8 +39,7 @@ Note
+ // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+ 
+ //- Add to construction table with typeName as the key
+-#define addToRunTimeSelectionTable\
+-(baseType,thisType,argNames)                                                   \
++#define addToRunTimeSelectionTable(baseType,thisType,argNames)                                                   \
+                                                                                \
+     /* Add thisType factory method to the table */                             \
+     baseType::add##argNames##ConstructorToTable<thisType>                      \
+@@ -48,8 +47,7 @@ Note
+ 
+ 
+ //- Add to construction table with typeName as the key
+-#define addRemovableToRunTimeSelectionTable\
+-(baseType,thisType,argNames)                                                   \
++#define addRemovableToRunTimeSelectionTable(baseType,thisType,argNames)                                                   \
+                                                                                \
+     /* Add thisType factory method to the table */                             \
+     baseType::addRemovable##argNames##ConstructorToTable<thisType>             \
+@@ -57,8 +55,7 @@ Note
+ 
+ 
+ //- Add to construction table with 'lookupName' as the key
+-#define addNamedToRunTimeSelectionTable\
+-(baseType,thisType,argNames,lookupName)                                        \
++#define addNamedToRunTimeSelectionTable(baseType,thisType,argNames,lookupName)                                        \
+                                                                                \
+     /* Add thisType factory method to the table, find by lookupName */         \
+     baseType::add##argNames##ConstructorToTable<thisType>                      \
+@@ -67,8 +64,7 @@ Note
+ 
+ 
+ //- Add to construction table with 'lookupName' as the key
+-#define addRemovableNamedToRunTimeSelectionTable\
+-(baseType,thisType,argNames,lookupName)                                        \
++#define addRemovableNamedToRunTimeSelectionTable(baseType,thisType,argNames,lookupName)                                        \
+                                                                                \
+     /* Add thisType factory method to the table, find by lookupName */         \
+     baseType::addRemovable##argNames##ConstructorToTable<thisType>             \
+@@ -77,8 +73,7 @@ Note
+ 
+ 
+ //- Add lookup alias for runTime selection
+-#define addAliasToRunTimeSelectionTable\
+-(baseType,thisType,argNames,lookup,other,ver)                                  \
++#define addAliasToRunTimeSelectionTable(baseType,thisType,argNames,lookup,other,ver)                                  \
+                                                                                \
+     /* Add thisType constructor function to the table, find by lookup */       \
+     baseType::addAlias##argNames##ConstructorToTable<thisType>                 \
+@@ -90,8 +85,7 @@ Note
+ 
+ //- Add to construction table with typeName as the key.
+ //  Use when baseType doesn't need a template argument (eg, is a typedef)
+-#define addTemplateToRunTimeSelectionTable\
+-(baseType,thisType,Targ,argNames)                                              \
++#define addTemplateToRunTimeSelectionTable(baseType,thisType,Targ,argNames)                                              \
+                                                                                \
+     /* Add thisType factory method to the table */                             \
+     baseType::add##argNames##ConstructorToTable<thisType<Targ>>                \
+@@ -100,8 +94,7 @@ Note
+ 
+ //- Add to construction table with 'lookupName' as the key.
+ //  Use when baseType doesn't need a template argument (eg, is a typedef)
+-#define addNamedTemplateToRunTimeSelectionTable\
+-(baseType,thisType,Targ,argNames,lookupName)                                   \
++#define addNamedTemplateToRunTimeSelectionTable(baseType,thisType,Targ,argNames,lookupName)                                   \
+                                                                                \
+     /* Add thisType factory method to the table, find by lookupName */         \
+     baseType::add##argNames##ConstructorToTable<thisType<Targ>>                \
+@@ -110,8 +103,7 @@ Note
+ 
+ 
+ //- Add lookup alias for for runTime selection
+-#define addAliasTemplateToRunTimeSelectionTable\
+-(baseType,thisType,Targ,argNames,lookup,other,ver)                             \
++#define addAliasTemplateToRunTimeSelectionTable(baseType,thisType,Targ,argNames,lookup,other,ver)                             \
+                                                                                \
+     /* Add thisType constructor function to the table, find by lookup */       \
+     baseType::addAlias##argNames##ConstructorToTable<thisType<Targ>>           \
+@@ -123,8 +115,7 @@ Note
+ 
+ //- Add to construction table with typeName as the key.
+ //  Use when baseType requires the Targ template argument as well
+-#define addTemplatedToRunTimeSelectionTable\
+-(baseType,thisType,Targ,argNames)                                              \
++#define addTemplatedToRunTimeSelectionTable(baseType,thisType,Targ,argNames)                                              \
+                                                                                \
+     /* Add thisType factory method to the table */                             \
+     baseType<Targ>::add##argNames##ConstructorToTable<thisType<Targ>>          \
+@@ -133,8 +124,7 @@ Note
+ 
+ //- Add to construction table with 'lookupName' as the key.
+ //  Use when baseType requires the Targ template argument as well
+-#define addNamedTemplatedToRunTimeSelectionTable\
+-(baseType,thisType,Targ,argNames,lookupName)                                   \
++#define addNamedTemplatedToRunTimeSelectionTable(baseType,thisType,Targ,argNames,lookupName)                                   \
+                                                                                \
+     /* Add thisType factory method to the table, find by lookupName */         \
+     baseType<Targ>::add##argNames##ConstructorToTable<thisType<Targ>>          \
+@@ -144,8 +134,7 @@ Note
+ 
+ //- Add lookup alias for for runTime selection
+ //  Use when baseType requires the Targ template argument as well
+-#define addAliasTemplatedToRunTimeSelectionTable\
+-(baseType,thisType,Targ,argNames,lookup,other,ver)                             \
++#define addAliasTemplatedToRunTimeSelectionTable(baseType,thisType,Targ,argNames,lookup,other,ver)                             \
+                                                                                \
+     /* Add the thisType constructor function to the table, find by lookup */   \
+     baseType<Targ>::add##argNames##ConstructorToTable<thisType<Targ>>          \
+diff --git a/src/OpenFOAM/db/runTimeSelection/construction/runTimeSelectionTables.H b/src/OpenFOAM/db/runTimeSelection/construction/runTimeSelectionTables.H
+index 33420c83..2169c917 100644
+--- a/src/OpenFOAM/db/runTimeSelection/construction/runTimeSelectionTables.H
++++ b/src/OpenFOAM/db/runTimeSelection/construction/runTimeSelectionTables.H
+@@ -170,8 +170,7 @@ Description
+ 
+ //- Declare a run-time selection (variables and adder classes)
+ //  The ptrWrapper is typically a Foam::autoPtr or a Foam::tmp container.
+-#define declareRunTimeSelectionTable\
+-(ptrWrapper,baseType,argNames,argList,parList)                                 \
++#define declareRunTimeSelectionTable(ptrWrapper,baseType,argNames,argList,parList)                                 \
+                                                                                \
+     declareRunTimeSelectionTableBase(                                          \
+         ptrWrapper<baseType>, argNames##Constructor, argList);                 \
+@@ -268,8 +267,7 @@ Description
+ 
+ 
+ //- Declare a run-time selection for derived classes
+-#define declareRunTimeNewSelectionTable\
+-(ptrWrapper,baseType,argNames,argList,parList)                                 \
++#define declareRunTimeNewSelectionTable(ptrWrapper,baseType,argNames,argList,parList)                                 \
+                                                                                \
+     declareRunTimeSelectionTableBase(                                          \
+         ptrWrapper<baseType>,argNames##Constructor,argList);                   \
+diff --git a/src/OpenFOAM/db/runTimeSelection/memberFunctions/addToMemberFunctionSelectionTable.H b/src/OpenFOAM/db/runTimeSelection/memberFunctions/addToMemberFunctionSelectionTable.H
+index 7089a769..1d980df7 100644
+--- a/src/OpenFOAM/db/runTimeSelection/memberFunctions/addToMemberFunctionSelectionTable.H
++++ b/src/OpenFOAM/db/runTimeSelection/memberFunctions/addToMemberFunctionSelectionTable.H
+@@ -42,8 +42,7 @@ Note
+ // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+ 
+ //- Add to hash-table of functions with typeName as the key.
+-#define addToMemberFunctionSelectionTable\
+-(baseType,thisType,funcName,argNames)                                          \
++#define addToMemberFunctionSelectionTable(baseType,thisType,funcName,argNames)                                          \
+                                                                                \
+     /* Add thisType funcName to the table */                                   \
+     baseType::add##funcName##argNames##MemberFunctionToTable<thisType>         \
+@@ -51,8 +50,7 @@ Note
+ 
+ 
+ //- Add to hash-table of functions with 'lookupName' as the key.
+-#define addNamedToMemberFunctionSelectionTable\
+-(baseType,thisType,funcName,argNames,lookupName)                               \
++#define addNamedToMemberFunctionSelectionTable(baseType,thisType,funcName,argNames,lookupName)                               \
+                                                                                \
+     /* Add thisType funcName to the table, find by lookup name */              \
+     baseType::add##funcName##argNames##MemberFunctionToTable<thisType>         \
+@@ -61,8 +59,7 @@ Note
+ 
+ 
+ //- Add lookup alias for runTime member selection.
+-#define addAliasToMemberFunctionSelectionTable\
+-(baseType,thisType,funcName,argNames,lookup,other,ver)                         \
++#define addAliasToMemberFunctionSelectionTable(baseType,thisType,funcName,argNames,lookup,other,ver)                         \
+                                                                                \
+     /* Add thisType funcName to the table, find by lookup name */              \
+     baseType::addAlias##funcName##argNames##MemberFunctionToTable<thisType>    \
+@@ -74,8 +71,7 @@ Note
+ 
+ //- Add to hash-table of functions with typeName as the key.
+ //  Use when baseType doesn't need a template argument (eg, is a typedef)
+-#define addTemplateToMemberFunctionSelectionTable\
+-(baseType,thisType,Targ,funcName,argNames)                                     \
++#define addTemplateToMemberFunctionSelectionTable(baseType,thisType,Targ,funcName,argNames)                                     \
+                                                                                \
+     /* Add thisType funcName to the table */                                   \
+     baseType::add##funcName##argNames##MemberFunctionToTable<thisType<Targ>>   \
+@@ -85,8 +81,7 @@ Note
+ 
+ //- Add to hash-table of functions with 'lookupName' as the key.
+ //  Use when baseType doesn't need a template argument (eg, is a typedef)
+-#define addNamedTemplateToMemberFunctionSelectionTable\
+-(baseType,thisType,Targ,funcName,argNames,lookupName)                          \
++#define addNamedTemplateToMemberFunctionSelectionTable(baseType,thisType,Targ,funcName,argNames,lookupName)                          \
+                                                                                \
+     /* Add thisType funcName to the table, find by lookupName */               \
+     baseType::add##funcName##argNames##MemberFunctionToTable<thisType<Targ>>   \
+@@ -95,8 +90,7 @@ Note
+ 
+ 
+ //- Add lookup alias for runTime member selection.
+-#define addAliasTemplateToMemberFunctionSelectionTable\
+-(baseType,thisType,Targ,funcName,argNames,lookup,other,ver)                    \
++#define addAliasTemplateToMemberFunctionSelectionTable(baseType,thisType,Targ,funcName,argNames,lookup,other,ver)                    \
+                                                                                \
+     /* Add thisType funcName to the table, find by lookup name */              \
+     baseType::addAlias##funcName##argNames##MemberFunctionToTable              \
+@@ -109,8 +103,7 @@ Note
+ 
+ //- Add to hash-table of functions with typeName as the key.
+ //  Use when baseType requires the Targ template argument as well
+-#define addTemplatedToMemberFunctionSelectionTable\
+-(baseType,thisType,Targ,funcName,argNames)                                     \
++#define addTemplatedToMemberFunctionSelectionTable(baseType,thisType,Targ,funcName,argNames)                                     \
+                                                                                \
+     /* Add thisType funcName to the table */                                   \
+     baseType<Targ>::add##funcName##argNames##MemberFunctionToTable             \
+@@ -120,8 +113,7 @@ Note
+ 
+ //- Add to hash-table of functions with 'lookupName' as the key.
+ //  Use when baseType requires the Targ template argument as well
+-#define addNamedTemplatedToMemberFunctionSelectionTable\
+-(baseType,thisType,Targ,funcName,argNames,lookupName)                          \
++#define addNamedTemplatedToMemberFunctionSelectionTable(baseType,thisType,Targ,funcName,argNames,lookupName)                          \
+                                                                                \
+     /* Add thisType funcName to the table, find by lookupName */               \
+     baseType<Targ>::add##funcName##argNames##MemberFunctionToTable             \
+@@ -130,8 +122,7 @@ Note
+         baseType##Targ##Table_##lookupName##_(#lookupName)
+ 
+ //- Add lookup alias for runTime member selection.
+-#define addAliasTemplatedToMemberFunctionSelectionTable\
+-(baseType,thisType,Targ,funcName,argNames,lookup,other,ver)                    \
++#define addAliasTemplatedToMemberFunctionSelectionTable(baseType,thisType,Targ,funcName,argNames,lookup,other,ver)                    \
+                                                                                \
+     /* Add thisType funcName to the table, find by lookup name */              \
+     baseType<Targ>::addAlias##funcName##argNames##MemberFunctionToTable        \
+diff --git a/src/OpenFOAM/db/runTimeSelection/memberFunctions/memberFunctionSelectionTables.H b/src/OpenFOAM/db/runTimeSelection/memberFunctions/memberFunctionSelectionTables.H
+index 82889c2a..902205d0 100644
+--- a/src/OpenFOAM/db/runTimeSelection/memberFunctions/memberFunctionSelectionTables.H
++++ b/src/OpenFOAM/db/runTimeSelection/memberFunctions/memberFunctionSelectionTables.H
+@@ -44,8 +44,7 @@ Note
+ //
+ 
+ //- Declare a run-time member-function selection (variables and adder classes)
+-#define declareMemberFunctionSelectionTable\
+-(returnType,baseType,funcName,argNames,argList,parListUnused)                  \
++#define declareMemberFunctionSelectionTable(returnType,baseType,funcName,argNames,argList,parListUnused)                  \
+                                                                                \
+     declareRunTimeSelectionTableBase(                                          \
+         returnType, funcName##argNames##MemberFunction, argList);              \
+@@ -160,8 +159,7 @@ Note
+ 
+ //- Define run-time selection table for template classes
+ //  use when baseType requires the Targ template argument
+-#define defineTemplatedMemberFunctionSelectionTable\
+-(baseType,funcName,argNames,Targ)                                              \
++#define defineTemplatedMemberFunctionSelectionTable(baseType,funcName,argNames,Targ)                                              \
+                                                                                \
+     defineRunTimeSelectionTableBase(                                           \
+         baseType,baseType<Targ>::funcName##argNames##MemberFunction,template<>)
+diff --git a/src/OpenFOAM/fields/pointPatchFields/pointPatchField/pointPatchFieldMacros.H b/src/OpenFOAM/fields/pointPatchFields/pointPatchField/pointPatchFieldMacros.H
+index 640662c4..9b9e32fd 100644
+--- a/src/OpenFOAM/fields/pointPatchFields/pointPatchField/pointPatchFieldMacros.H
++++ b/src/OpenFOAM/fields/pointPatchFields/pointPatchField/pointPatchFieldMacros.H
+@@ -38,8 +38,7 @@ Description
+ // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+ // Runtime selection macros
+ 
+-#define addToPointPatchFieldRunTimeSelection\
+-(PatchTypeField, typePatchTypeField)\
++#define addToPointPatchFieldRunTimeSelection(PatchTypeField, typePatchTypeField)\
+     addToRunTimeSelectionTable                                                \
+     (                                                                         \
+         PatchTypeField,                                                       \
+diff --git a/src/OpenFOAM/global/constants/dimensionedConstants.H b/src/OpenFOAM/global/constants/dimensionedConstants.H
+index 158f8b84..b02215fb 100644
+--- a/src/OpenFOAM/global/constants/dimensionedConstants.H
++++ b/src/OpenFOAM/global/constants/dimensionedConstants.H
+@@ -146,8 +146,7 @@ T dimensionedConstant
+ 
+ 
+ //- Defined dimensioned constant with default , lookup as \a Name
+-#define defineDimensionedConstantWithDefault\
+-(Group,Switch,DefaultExpr,Tag,Name)                                            \
++#define defineDimensionedConstantWithDefault(Group,Switch,DefaultExpr,Tag,Name)                                            \
+     const Foam::dimensionedScalar Switch;                                      \
+     class add##Tag##ToDimensionedConstantWithDefault                           \
+     :                                                                          \
+diff --git a/src/finiteVolume/fields/fvPatchFields/fvPatchField/fvPatchFieldMacros.H b/src/finiteVolume/fields/fvPatchFields/fvPatchField/fvPatchFieldMacros.H
+index 1cf00e95..983c45ca 100644
+--- a/src/finiteVolume/fields/fvPatchFields/fvPatchField/fvPatchFieldMacros.H
++++ b/src/finiteVolume/fields/fvPatchFields/fvPatchField/fvPatchFieldMacros.H
+@@ -62,8 +62,7 @@ Description
+ 
+ // Use with caution
+ #undef  addRemovableToPatchFieldRunTimeSelection
+-#define addRemovableToPatchFieldRunTimeSelection\
+-(PatchTypeField, typePatchTypeField)                                          \
++#define addRemovableToPatchFieldRunTimeSelection(PatchTypeField, typePatchTypeField)                                          \
+                                                                               \
+     addRemovableToRunTimeSelectionTable                                       \
+     (                                                                         \
+diff --git a/src/finiteVolume/interpolation/surfaceInterpolation/limitedSchemes/LimitedScheme/LimitedScheme.H b/src/finiteVolume/interpolation/surfaceInterpolation/limitedSchemes/LimitedScheme/LimitedScheme.H
+index 041ad72a..bf03386f 100644
+--- a/src/finiteVolume/interpolation/surfaceInterpolation/limitedSchemes/LimitedScheme/LimitedScheme.H
++++ b/src/finiteVolume/interpolation/surfaceInterpolation/limitedSchemes/LimitedScheme/LimitedScheme.H
+@@ -152,8 +152,7 @@ public:
+ 
+ // Add the patch constructor functions to the hash tables
+ 
+-#define makeLimitedSurfaceInterpolationTypeScheme\
+-(                                                                              \
++#define makeLimitedSurfaceInterpolationTypeScheme(                                                                              \
+     SS,                                                                        \
+     LIMITER,                                                                   \
+     NVDTVD,                                                                    \
+@@ -203,8 +202,7 @@ makeLimitedSurfaceInterpolationTypeScheme(SS,LIMITER,NVDTVD,magSqr,tensor)
+ makeLimitedSurfaceInterpolationTypeScheme(SS,LIMITER,NVDVTVDV,null,vector)
+ 
+ 
+-#define makeLLimitedSurfaceInterpolationTypeScheme\
+-(                                                                              \
++#define makeLLimitedSurfaceInterpolationTypeScheme(                                                                              \
+     SS,                                                                        \
+     LLIMITER,                                                                  \
+     LIMITER,                                                                   \
+diff --git a/src/finiteVolume/interpolation/surfaceInterpolation/multivariateSchemes/multivariateScheme/multivariateScheme.H b/src/finiteVolume/interpolation/surfaceInterpolation/multivariateSchemes/multivariateScheme/multivariateScheme.H
+index 32116df6..42dd4227 100644
+--- a/src/finiteVolume/interpolation/surfaceInterpolation/multivariateSchemes/multivariateScheme/multivariateScheme.H
++++ b/src/finiteVolume/interpolation/surfaceInterpolation/multivariateSchemes/multivariateScheme/multivariateScheme.H
+@@ -177,8 +177,7 @@ multivariateSurfaceInterpolationScheme<scalar>::addIstreamConstructorToTable   \
+     addMultivariate##SS##ConstructorToTable_;
+ 
+ 
+-#define makeLLimitedMultivariateSurfaceInterpolationScheme\
+-(                                                                              \
++#define makeLLimitedMultivariateSurfaceInterpolationScheme(                                                                              \
+     SS,                                                                        \
+     LLIMITER,                                                                  \
+     LIMITER,                                                                   \
+diff --git a/src/finiteVolume/interpolation/surfaceInterpolation/schemes/CentredFitScheme/CentredFitScheme.H b/src/finiteVolume/interpolation/surfaceInterpolation/schemes/CentredFitScheme/CentredFitScheme.H
+index 0c45f877..228121ff 100644
+--- a/src/finiteVolume/interpolation/surfaceInterpolation/schemes/CentredFitScheme/CentredFitScheme.H
++++ b/src/finiteVolume/interpolation/surfaceInterpolation/schemes/CentredFitScheme/CentredFitScheme.H
+@@ -152,8 +152,7 @@ public:
+ 
+ // Add the patch constructor functions to the hash tables
+ 
+-#define makeCentredFitSurfaceInterpolationTypeScheme\
+-(                                                                              \
++#define makeCentredFitSurfaceInterpolationTypeScheme(                                                                              \
+     SS,                                                                        \
+     POLYNOMIAL,                                                                \
+     STENCIL,                                                                   \
+diff --git a/src/finiteVolume/interpolation/surfaceInterpolation/schemes/PureUpwindFitScheme/PureUpwindFitScheme.H b/src/finiteVolume/interpolation/surfaceInterpolation/schemes/PureUpwindFitScheme/PureUpwindFitScheme.H
+index 5a718e8f..db45eb11 100644
+--- a/src/finiteVolume/interpolation/surfaceInterpolation/schemes/PureUpwindFitScheme/PureUpwindFitScheme.H
++++ b/src/finiteVolume/interpolation/surfaceInterpolation/schemes/PureUpwindFitScheme/PureUpwindFitScheme.H
+@@ -159,8 +159,7 @@ public:
+ 
+ // Add the patch constructor functions to the hash tables
+ 
+-#define makePureUpwindFitSurfaceInterpolationTypeScheme\
+-(                                                                              \
++#define makePureUpwindFitSurfaceInterpolationTypeScheme(                                                                              \
+     SS,                                                                        \
+     POLYNOMIAL,                                                                \
+     STENCIL,                                                                   \
+diff --git a/src/finiteVolume/interpolation/surfaceInterpolation/schemes/UpwindFitScheme/UpwindFitScheme.H b/src/finiteVolume/interpolation/surfaceInterpolation/schemes/UpwindFitScheme/UpwindFitScheme.H
+index 91e2d7c8..8e4865df 100644
+--- a/src/finiteVolume/interpolation/surfaceInterpolation/schemes/UpwindFitScheme/UpwindFitScheme.H
++++ b/src/finiteVolume/interpolation/surfaceInterpolation/schemes/UpwindFitScheme/UpwindFitScheme.H
+@@ -163,8 +163,7 @@ public:
+ 
+ // Add the patch constructor functions to the hash tables
+ 
+-#define makeUpwindFitSurfaceInterpolationTypeScheme\
+-(                                                                              \
++#define makeUpwindFitSurfaceInterpolationTypeScheme(                                                                              \
+     SS,                                                                        \
+     POLYNOMIAL,                                                                \
+     STENCIL,                                                                   \
+diff --git a/src/thermophysicalModels/specie/reaction/reactions/makeReaction.H b/src/thermophysicalModels/specie/reaction/reactions/makeReaction.H
+index 239e66cb..b9fb0532 100644
+--- a/src/thermophysicalModels/specie/reaction/reactions/makeReaction.H
++++ b/src/thermophysicalModels/specie/reaction/reactions/makeReaction.H
+@@ -82,8 +82,7 @@ namespace Foam
+     );
+ 
+ 
+-#define makePressureDependentReaction\
+-(                                                                              \
++#define makePressureDependentReaction(                                                                              \
+     Thermo,                                                                    \
+     Reaction,                                                                  \
+     PressureDependentReactionRate,                                             \

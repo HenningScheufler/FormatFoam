@@ -170,8 +170,7 @@ Description
 
 //- Declare a run-time selection (variables and adder classes)
 //  The ptrWrapper is typically a Foam::autoPtr or a Foam::tmp container.
-#define declareRunTimeSelectionTable\
-(ptrWrapper,baseType,argNames,argList,parList)                                 \
+#define declareRunTimeSelectionTable(ptrWrapper,baseType,argNames,argList,parList)                                 \
                                                                                \
     declareRunTimeSelectionTableBase(                                          \
         ptrWrapper<baseType>, argNames##Constructor, argList);                 \
@@ -268,8 +267,7 @@ Description
 
 
 //- Declare a run-time selection for derived classes
-#define declareRunTimeNewSelectionTable\
-(ptrWrapper,baseType,argNames,argList,parList)                                 \
+#define declareRunTimeNewSelectionTable(ptrWrapper,baseType,argNames,argList,parList)                                 \
                                                                                \
     declareRunTimeSelectionTableBase(                                          \
         ptrWrapper<baseType>,argNames##Constructor,argList);                   \

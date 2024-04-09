@@ -152,8 +152,7 @@ public:
 
 // Add the patch constructor functions to the hash tables
 
-#define makeLimitedSurfaceInterpolationTypeScheme\
-(                                                                              \
+#define makeLimitedSurfaceInterpolationTypeScheme(                                                                              \
     SS,                                                                        \
     LIMITER,                                                                   \
     NVDTVD,                                                                    \
@@ -203,8 +202,7 @@ makeLimitedSurfaceInterpolationTypeScheme(SS,LIMITER,NVDTVD,magSqr,tensor)
 makeLimitedSurfaceInterpolationTypeScheme(SS,LIMITER,NVDVTVDV,null,vector)
 
 
-#define makeLLimitedSurfaceInterpolationTypeScheme\
-(                                                                              \
+#define makeLLimitedSurfaceInterpolationTypeScheme(                                                                              \
     SS,                                                                        \
     LLIMITER,                                                                  \
     LIMITER,                                                                   \

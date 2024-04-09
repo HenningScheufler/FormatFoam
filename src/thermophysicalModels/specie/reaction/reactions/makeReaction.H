@@ -82,8 +82,7 @@ namespace Foam
     );
 
 
-#define makePressureDependentReaction\
-(                                                                              \
+#define makePressureDependentReaction(                                                                              \
     Thermo,                                                                    \
     Reaction,                                                                  \
     PressureDependentReactionRate,                                             \

@@ -163,8 +163,7 @@ public:
 
 // Add the patch constructor functions to the hash tables
 
-#define makeUpwindFitSurfaceInterpolationTypeScheme\
-(                                                                              \
+#define makeUpwindFitSurfaceInterpolationTypeScheme(                                                                              \
     SS,                                                                        \
     POLYNOMIAL,                                                                \
     STENCIL,                                                                   \

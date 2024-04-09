@@ -44,8 +44,7 @@ Note
 //
 
 //- Declare a run-time member-function selection (variables and adder classes)
-#define declareMemberFunctionSelectionTable\
-(returnType,baseType,funcName,argNames,argList,parListUnused)                  \
+#define declareMemberFunctionSelectionTable(returnType,baseType,funcName,argNames,argList,parListUnused)                  \
                                                                                \
     declareRunTimeSelectionTableBase(                                          \
         returnType, funcName##argNames##MemberFunction, argList);              \
@@ -160,8 +159,7 @@ Note
 
 //- Define run-time selection table for template classes
 //  use when baseType requires the Targ template argument
-#define defineTemplatedMemberFunctionSelectionTable\
-(baseType,funcName,argNames,Targ)                                              \
+#define defineTemplatedMemberFunctionSelectionTable(baseType,funcName,argNames,Targ)                                              \
                                                                                \
     defineRunTimeSelectionTableBase(                                           \
         baseType,baseType<Targ>::funcName##argNames##MemberFunction,template<>)

@@ -62,8 +62,7 @@ Description
 
 // Use with caution
 #undef  addRemovableToPatchFieldRunTimeSelection
-#define addRemovableToPatchFieldRunTimeSelection\
-(PatchTypeField, typePatchTypeField)                                          \
+#define addRemovableToPatchFieldRunTimeSelection(PatchTypeField, typePatchTypeField)                                          \
                                                                               \
     addRemovableToRunTimeSelectionTable                                       \
     (                                                                         \

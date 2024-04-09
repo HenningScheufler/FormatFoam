@@ -146,8 +146,7 @@ T dimensionedConstant
 
 
 //- Defined dimensioned constant with default , lookup as \a Name
-#define defineDimensionedConstantWithDefault\
-(Group,Switch,DefaultExpr,Tag,Name)                                            \
+#define defineDimensionedConstantWithDefault(Group,Switch,DefaultExpr,Tag,Name)                                            \
     const Foam::dimensionedScalar Switch;                                      \
     class add##Tag##ToDimensionedConstantWithDefault                           \
     :                                                                          \

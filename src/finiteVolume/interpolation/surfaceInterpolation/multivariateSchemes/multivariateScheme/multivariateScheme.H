@@ -177,8 +177,7 @@ multivariateSurfaceInterpolationScheme<scalar>::addIstreamConstructorToTable   \
     addMultivariate##SS##ConstructorToTable_;
 
 
-#define makeLLimitedMultivariateSurfaceInterpolationScheme\
-(                                                                              \
+#define makeLLimitedMultivariateSurfaceInterpolationScheme(                                                                              \
     SS,                                                                        \
     LLIMITER,                                                                  \
     LIMITER,                                                                   \

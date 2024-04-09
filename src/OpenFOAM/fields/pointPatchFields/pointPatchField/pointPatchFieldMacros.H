@@ -38,8 +38,7 @@ Description
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 // Runtime selection macros
 
-#define addToPointPatchFieldRunTimeSelection\
-(PatchTypeField, typePatchTypeField)\
+#define addToPointPatchFieldRunTimeSelection(PatchTypeField, typePatchTypeField)\
     addToRunTimeSelectionTable                                                \
     (                                                                         \
         PatchTypeField,                                                       \

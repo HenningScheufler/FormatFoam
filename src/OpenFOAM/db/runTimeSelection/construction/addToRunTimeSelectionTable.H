@@ -39,8 +39,7 @@ Note
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 //- Add to construction table with typeName as the key
-#define addToRunTimeSelectionTable\
-(baseType,thisType,argNames)                                                   \
+#define addToRunTimeSelectionTable(baseType,thisType,argNames)                                                   \
                                                                                \
     /* Add thisType factory method to the table */                             \
     baseType::add##argNames##ConstructorToTable<thisType>                      \
@@ -48,8 +47,7 @@ Note
 
 
 //- Add to construction table with typeName as the key
-#define addRemovableToRunTimeSelectionTable\
-(baseType,thisType,argNames)                                                   \
+#define addRemovableToRunTimeSelectionTable(baseType,thisType,argNames)                                                   \
                                                                                \
     /* Add thisType factory method to the table */                             \
     baseType::addRemovable##argNames##ConstructorToTable<thisType>             \
@@ -57,8 +55,7 @@ Note
 
 
 //- Add to construction table with 'lookupName' as the key
-#define addNamedToRunTimeSelectionTable\
-(baseType,thisType,argNames,lookupName)                                        \
+#define addNamedToRunTimeSelectionTable(baseType,thisType,argNames,lookupName)                                        \
                                                                                \
     /* Add thisType factory method to the table, find by lookupName */         \
     baseType::add##argNames##ConstructorToTable<thisType>                      \
@@ -67,8 +64,7 @@ Note
 
 
 //- Add to construction table with 'lookupName' as the key
-#define addRemovableNamedToRunTimeSelectionTable\
-(baseType,thisType,argNames,lookupName)                                        \
+#define addRemovableNamedToRunTimeSelectionTable(baseType,thisType,argNames,lookupName)                                        \
                                                                                \
     /* Add thisType factory method to the table, find by lookupName */         \
     baseType::addRemovable##argNames##ConstructorToTable<thisType>             \
@@ -77,8 +73,7 @@ Note
 
 
 //- Add lookup alias for runTime selection
-#define addAliasToRunTimeSelectionTable\
-(baseType,thisType,argNames,lookup,other,ver)                                  \
+#define addAliasToRunTimeSelectionTable(baseType,thisType,argNames,lookup,other,ver)                                  \
                                                                                \
     /* Add thisType constructor function to the table, find by lookup */       \
     baseType::addAlias##argNames##ConstructorToTable<thisType>                 \
@@ -90,8 +85,7 @@ Note
 
 //- Add to construction table with typeName as the key.
 //  Use when baseType doesn't need a template argument (eg, is a typedef)
-#define addTemplateToRunTimeSelectionTable\
-(baseType,thisType,Targ,argNames)                                              \
+#define addTemplateToRunTimeSelectionTable(baseType,thisType,Targ,argNames)                                              \
                                                                                \
     /* Add thisType factory method to the table */                             \
     baseType::add##argNames##ConstructorToTable<thisType<Targ>>                \
@@ -100,8 +94,7 @@ Note
 
 //- Add to construction table with 'lookupName' as the key.
 //  Use when baseType doesn't need a template argument (eg, is a typedef)
-#define addNamedTemplateToRunTimeSelectionTable\
-(baseType,thisType,Targ,argNames,lookupName)                                   \
+#define addNamedTemplateToRunTimeSelectionTable(baseType,thisType,Targ,argNames,lookupName)                                   \
                                                                                \
     /* Add thisType factory method to the table, find by lookupName */         \
     baseType::add##argNames##ConstructorToTable<thisType<Targ>>                \
@@ -110,8 +103,7 @@ Note
 
 
 //- Add lookup alias for for runTime selection
-#define addAliasTemplateToRunTimeSelectionTable\
-(baseType,thisType,Targ,argNames,lookup,other,ver)                             \
+#define addAliasTemplateToRunTimeSelectionTable(baseType,thisType,Targ,argNames,lookup,other,ver)                             \
                                                                                \
     /* Add thisType constructor function to the table, find by lookup */       \
     baseType::addAlias##argNames##ConstructorToTable<thisType<Targ>>           \
@@ -123,8 +115,7 @@ Note
 
 //- Add to construction table with typeName as the key.
 //  Use when baseType requires the Targ template argument as well
-#define addTemplatedToRunTimeSelectionTable\
-(baseType,thisType,Targ,argNames)                                              \
+#define addTemplatedToRunTimeSelectionTable(baseType,thisType,Targ,argNames)                                              \
                                                                                \
     /* Add thisType factory method to the table */                             \
     baseType<Targ>::add##argNames##ConstructorToTable<thisType<Targ>>          \
@@ -133,8 +124,7 @@ Note
 
 //- Add to construction table with 'lookupName' as the key.
 //  Use when baseType requires the Targ template argument as well
-#define addNamedTemplatedToRunTimeSelectionTable\
-(baseType,thisType,Targ,argNames,lookupName)                                   \
+#define addNamedTemplatedToRunTimeSelectionTable(baseType,thisType,Targ,argNames,lookupName)                                   \
                                                                                \
     /* Add thisType factory method to the table, find by lookupName */         \
     baseType<Targ>::add##argNames##ConstructorToTable<thisType<Targ>>          \
@@ -144,8 +134,7 @@ Note
 
 //- Add lookup alias for for runTime selection
 //  Use when baseType requires the Targ template argument as well
-#define addAliasTemplatedToRunTimeSelectionTable\
-(baseType,thisType,Targ,argNames,lookup,other,ver)                             \
+#define addAliasTemplatedToRunTimeSelectionTable(baseType,thisType,Targ,argNames,lookup,other,ver)                             \
                                                                                \
     /* Add the thisType constructor function to the table, find by lookup */   \
     baseType<Targ>::add##argNames##ConstructorToTable<thisType<Targ>>          \

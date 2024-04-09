@@ -1,0 +1,14 @@
+diff --git a/src/OpenFOAM/fields/Fields/Field/FieldM.H b/src/OpenFOAM/fields/Fields/Field/FieldM.H
+index 06e24b15..f7aaec1c 100644
+--- a/src/OpenFOAM/fields/Fields/Field/FieldM.H
++++ b/src/OpenFOAM/fields/Fields/Field/FieldM.H
+@@ -344,8 +344,7 @@ void checkFields
+ 
+ // Ternary Free Function : f1 OP FUNC(f2, f3, f4)
+ 
+-#define TFOR_ALL_F_OP_FUNC_F_F_F\
+-(typeF1, f1, OP, FUNC, typeF2, f2, typeF3, f3, typeF4, f4)                     \
++#define TFOR_ALL_F_OP_FUNC_F_F_F(typeF1, f1, OP, FUNC, typeF2, f2, typeF3, f3, typeF4, f4)                     \
+ {                                                                              \
+     /* Check fields have same size */                                          \
+     checkFields(f1, f2, f3, f4, "f1 " #OP " " #FUNC "(f2, f3, f4)");           \

@@ -254,6 +254,30 @@ index 82889c2a..902205d0 100644
                                                                                 \
      defineRunTimeSelectionTableBase(                                           \
          baseType,baseType<Targ>::funcName##argNames##MemberFunction,template<>)
+diff --git a/src/OpenFOAM/fields/Fields/Field/FieldM.H b/src/OpenFOAM/fields/Fields/Field/FieldM.H
+index 06e24b15..5c1cbeaf 100644
+--- a/src/OpenFOAM/fields/Fields/Field/FieldM.H
++++ b/src/OpenFOAM/fields/Fields/Field/FieldM.H
+@@ -344,8 +344,7 @@ void checkFields
+ 
+ // Ternary Free Function : f1 OP FUNC(f2, f3, f4)
+ 
+-#define TFOR_ALL_F_OP_FUNC_F_F_F\
+-(typeF1, f1, OP, FUNC, typeF2, f2, typeF3, f3, typeF4, f4)                     \
++#define TFOR_ALL_F_OP_FUNC_F_F_F(typeF1, f1, OP, FUNC, typeF2, f2, typeF3, f3, typeF4, f4)                     \
+ {                                                                              \
+     /* Check fields have same size */                                          \
+     checkFields(f1, f2, f3, f4, "f1 " #OP " " #FUNC "(f2, f3, f4)");           \
+@@ -368,8 +367,7 @@ void checkFields
+ 
+ // Ternary Free Function : f1 OP FUNC(f2, f3, s4)
+ 
+-#define TFOR_ALL_F_OP_FUNC_F_F_S\
+-(typeF1, f1, OP, FUNC, typeF2, f2, typeF3, f3, typeF4, s4)                     \
++#define TFOR_ALL_F_OP_FUNC_F_F_S(typeF1, f1, OP, FUNC, typeF2, f2, typeF3, f3, typeF4, s4)                     \
+ {                                                                              \
+     /* Check fields have same size */                                          \
+     checkFields(f1, f2, f3, "f1 " #OP " " #FUNC "(f2, f3, s)");                \
 diff --git a/src/OpenFOAM/fields/pointPatchFields/pointPatchField/pointPatchFieldMacros.H b/src/OpenFOAM/fields/pointPatchFields/pointPatchField/pointPatchFieldMacros.H
 index 640662c4..9b9e32fd 100644
 --- a/src/OpenFOAM/fields/pointPatchFields/pointPatchField/pointPatchFieldMacros.H
